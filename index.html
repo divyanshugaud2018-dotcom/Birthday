@@ -103,6 +103,8 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffe4f3 
 .cut-message span{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-pink);display:block;margin-bottom:6px}
 .cut-message p{color:var(--text-mid);font-size:1rem}
 .cake-msg{margin-top:28px;animation:fadeIn .6s ease .8s both}
+.birthday-wish{max-width:560px;margin:0 auto 22px;padding:18px 22px;background:rgba(255,255,255,.78);border:2px solid rgba(233,30,140,.25);border-radius:18px;box-shadow:0 8px 24px rgba(233,30,140,.12);color:var(--text-mid);font-size:.98rem;line-height:1.7}
+.birthday-wish strong{display:block;margin-bottom:6px;color:var(--deep-pink);font-family:'Dancing Script',cursive;font-size:1.8rem}
 /* MUSIC */
 .music-container{max-width:620px;width:100%;text-align:center}
 .music-icon{font-size:6rem;display:block;animation:bounceIcon 1s ease-in-out infinite alternate}
@@ -176,13 +178,13 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffe4f3 
       <div class="result-emoji" id="result-emoji"></div>
       <h3 id="result-title"></h3>
       <p id="result-text"></p>
-      <button class="btn-primary" onclick="goToSection('cake')">Now Cut the Cake! 🎂</button>
+      <button class="btn-primary" onclick="goToSection('cake-section')">Now Cut the Cake! 🎂</button>
     </div>
   </div>
 </section>
 
 <!-- SECTION 3: CAKE -->
-<section id="cake" class="section">
+<section id="cake-section" class="section">
   <div class="cake-container">
     <h2 class="section-title">🎂 Time to Cut the Cake, Riya! 🎂</h2>
     <p class="cake-intro">Click on the cake to cut it! 🔪</p>
@@ -202,14 +204,14 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffe4f3 
       <div id="cut-cake" class="cut-cake hidden">
         <div class="cake-piece piece-left">🎂</div>
         <div class="cake-piece piece-right">🎂</div>
-        <div class="cut-message">
-          <span>🎉 Yay Riya! Make a Wish! 🎉</span>
-          <p>May all your dreams come true! ✨</p>
-        </div>
       </div>
     </div>
     <div id="cake-msg" class="cake-msg hidden">
-      <button class="btn-primary" onclick="goToSection('music')">Play Your Song! 🎵</button>
+      <div class="birthday-wish">
+        <strong>💖 My Birthday Wish For You 💖</strong>
+        Riya, may this new year of your life bring you endless happiness, good health, beautiful memories, and every dream your heart is waiting for. Keep smiling, keep shining, and always remember how deeply loved you are! ✨
+      </div>
+      <button class="btn-primary" onclick="goToSection('music')">Celebrate With Your Song! 🎵</button>
     </div>
   </div>
 </section>
