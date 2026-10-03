@@ -235,18 +235,20 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffe4f3 
         <source src="happy_birthday.wav" type="audio/wav" />
         Your browser does not support audio playback.
       </audio>
-      <button class="btn-music" id="play-btn" onclick="toggleMusic()">▶ Play Happy Birthday!</button>
+      <button class="btn-music" id="play-btn" onclick="toggleMusic()">▶ Play Song!</button>
     </div>
     <div class="lyrics">
-      <p>🎵 Happy Birthday to you,</p>
-      <p>Happy Birthday to you,</p>
-      <p>Happy Birthday dear <em>Riya</em>,</p>
-      <p>Happy Birthday to you! 🎵</p>
+      <p>🎵 Happy Birthday, dear <em>Riya</em>,</p>
+      <p>May your smile keep shining like the morning sun,</p>
+      <p>May your dreams bloom brighter, and your heart stay warm,</p>
+      <p>Today I celebrate you, my sweetest blessing, my forever joy. 🎵</p>
     </div>
     <div class="final-message">
-      <h3>💌 A Message For Riya 💌</h3>
-      <p>On your special day, Riya, I want you to know how much you mean to me. You bring so much joy, laughter, and love into everything around you. Keep shining, keep smiling, and keep being your wonderful self! 🌟</p>
-      <p>With all my love,<br/><strong>Your Best Friend 💕</strong></p>
+      <h3>💌 A Birthday Song From Me 💌</h3>
+      <p>Riya, today is not just your birthday — it is a reminder of how beautiful, kind, and precious you are. You make life lighter, happier, and more meaningful just by being in it. I hope your heart is filled with laughter, your days with peace, and your dreams with endless love.</p>
+      <p>May this new year bring you the happiness you deserve, the strength to chase every dream, and the love that keeps growing every day. You are truly one of a kind, and I am so lucky to celebrate you.</p>
+      <p>Happy Birthday, my lovely Riya — may your life always bloom with joy, grace, and beautiful memories. 💖✨</p>
+      <p>With all my love,<br/><strong>From Me To You 💕</strong></p>
     </div>
     <button class="btn-primary" onclick="goToSection('letter')">Open Your Letter 💌</button>
     <button class="btn-secondary" onclick="restartCelebration()">🔁 Celebrate Again!</button>
@@ -427,7 +429,7 @@ function toggleMusic() {
     if (playPromise !== undefined) {
       playPromise.catch(() => {
         isPlaying = false;
-        btn.textContent = '▶ Play Happy Birthday!';
+        btn.textContent = '▶ Play Song!';
         btn.classList.remove('playing');
         notes.classList.remove('active-notes');
         alert('The song could not play. Please use the audio player above or check your browser sound settings.');
@@ -435,7 +437,7 @@ function toggleMusic() {
     }
   } else {
     isPlaying = false;
-    btn.textContent = '▶ Play Happy Birthday!';
+    btn.textContent = '▶ Play Song!';
     btn.classList.remove('playing');
     notes.classList.remove('active-notes');
     audio.pause();
@@ -457,14 +459,14 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.addEventListener('pause', () => {
       if (audio.ended) return;
       isPlaying = false;
-      document.getElementById('play-btn').textContent = '▶ Play Happy Birthday!';
+      document.getElementById('play-btn').textContent = '▶ Play Song!';
       document.getElementById('play-btn').classList.remove('playing');
       document.getElementById('music-notes').classList.remove('active-notes');
     });
     audio.addEventListener('ended', () => {
       isPlaying = false;
       const btn = document.getElementById('play-btn');
-      if (btn) { btn.textContent = '▶ Play Happy Birthday!'; btn.classList.remove('playing'); }
+      if (btn) { btn.textContent = '▶ Play Song!'; btn.classList.remove('playing'); }
       document.getElementById('music-notes').classList.remove('active-notes');
     });
   }
