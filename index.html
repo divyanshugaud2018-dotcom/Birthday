@@ -520,7 +520,7 @@ function restartCelebration() {
   document.getElementById('cake-msg').classList.add('hidden');
   document.getElementById('quiz-card').classList.remove('hidden');
   document.getElementById('quiz-result').classList.add('hidden');
-  goToSection('music');
+  goToSection('landing');
   launchConfetti(60);
 }
 
@@ -528,8 +528,8 @@ function restartCelebration() {
 document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   document.querySelectorAll('.section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
-  const m = document.getElementById('music');
-  m.style.display='flex'; m.classList.add('active');
+  const l = document.getElementById('landing');
+  l.style.display='flex'; l.classList.add('active');
   setTimeout(() => launchConfetti(60), 400);
 });
 </script>
