@@ -5,8 +5,10 @@ const fs = require('fs');
 const path = require('path');
 
 const SAMPLE_RATE = 44100;
-const BPM = 100;
+const BPM = 104;
 const BEAT = 60 / BPM;
+const DURATION_SECONDS = 60;
+const MELODY_REPEATS = 4;
 
 const NOTES = {
   G4: 392.00, A4: 440.00, B4: 493.88,
@@ -22,34 +24,34 @@ const MELODY = [
   ['F5',0.75],['F5',0.25],['E5',1],['C5',1],['D5',1],['C5',3]
 ];
 
-// Total samples needed
-let totalSamples = 0;
-MELODY.forEach(([,b]) => totalSamples += Math.ceil(b * BEAT * SAMPLE_RATE));
-
-const samples = new Float32Array(totalSamples + SAMPLE_RATE); // +1s tail
-
+const samples = new Float32Array(DURATION_SECONDS * SAMPLE_RATE);
 let offset = 0;
-MELODY.forEach(([note, beats]) => {
-  const freq = NOTES[note];
-  const noteSamples = Math.ceil(beats * BEAT * SAMPLE_RATE);
-  const attackSamples = Math.floor(SAMPLE_RATE * 0.02);
-  const releaseSamples = Math.floor(SAMPLE_RATE * 0.08);
+let elapsedBeats = 0;
+for (let repeat = 0; repeat < MELODY_REPEATS; repeat++) {
+  MELODY.forEach(([note, beats]) => {
+    const freq = NOTES[note];
+    const noteStart = Math.round(elapsedBeats * BEAT * SAMPLE_RATE);
+    elapsedBeats += beats;
+    const noteEnd = Math.round(elapsedBeats * BEAT * SAMPLE_RATE);
+    const noteSamples = Math.min(noteEnd - noteStart, samples.length - offset);
+    const attackSamples = Math.floor(SAMPLE_RATE * 0.02);
+    const releaseSamples = Math.floor(SAMPLE_RATE * 0.08);
 
-  for (let i = 0; i < noteSamples; i++) {
-    let env = 1;
-    if (i < attackSamples) env = i / attackSamples;
-    else if (i > noteSamples - releaseSamples) env = (noteSamples - i) / releaseSamples;
+    for (let i = 0; i < noteSamples; i++) {
+      let env = 1;
+      if (i < attackSamples) env = i / attackSamples;
+      else if (i > noteSamples - releaseSamples) env = (noteSamples - i) / releaseSamples;
 
-    // Sine + small harmonic for warmth
-    const t = (offset + i) / SAMPLE_RATE;
-    samples[offset + i] = env * 0.5 * (
-      0.7 * Math.sin(2 * Math.PI * freq * t) +
-      0.2 * Math.sin(2 * Math.PI * freq * 2 * t) +
-      0.1 * Math.sin(2 * Math.PI * freq * 3 * t)
-    );
-  }
-  offset += noteSamples;
-});
+      const t = (offset + i) / SAMPLE_RATE;
+      samples[offset + i] = env * 0.5 * (
+        0.7 * Math.sin(2 * Math.PI * freq * t) +
+        0.2 * Math.sin(2 * Math.PI * freq * 2 * t) +
+        0.1 * Math.sin(2 * Math.PI * freq * 3 * t)
+      );
+    }
+    offset += noteSamples;
+  });
+}
 
 // Convert Float32 to Int16
 const pcm = Buffer.alloc(samples.length * 2);

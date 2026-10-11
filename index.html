@@ -119,6 +119,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffe4f3 
 .note.n5{top:60%;left:95%;animation:noteFloat 2s ease-in-out infinite 1.6s}
 @keyframes noteFloat{0%{opacity:0;transform:translateY(0) scale(.8)}30%{opacity:1}100%{opacity:0;transform:translateY(-50px) scale(1.2)}}
 .music-controls{margin:20px 0}
+.song-duration{color:var(--text-mid);font-size:.9rem;margin:-4px 0 16px}
 .music-notes .note{animation-play-state:paused}
 .music-notes.active-notes .note{animation-play-state:running}
 .lyrics{background:rgba(255,255,255,.6);backdrop-filter:blur(10px);border:2px solid rgba(255,111,176,.3);border-radius:20px;padding:24px 32px;margin:24px 0;line-height:2.2;font-size:1.05rem;color:var(--text-mid)}
@@ -519,7 +520,7 @@ function restartCelebration() {
   document.getElementById('cake-msg').classList.add('hidden');
   document.getElementById('quiz-card').classList.remove('hidden');
   document.getElementById('quiz-result').classList.add('hidden');
-  goToSection('landing');
+  goToSection('music');
   launchConfetti(60);
 }
 
@@ -527,8 +528,8 @@ function restartCelebration() {
 document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   document.querySelectorAll('.section').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
-  const l = document.getElementById('landing');
-  l.style.display='flex'; l.classList.add('active');
+  const m = document.getElementById('music');
+  m.style.display='flex'; m.classList.add('active');
   setTimeout(() => launchConfetti(60), 400);
 });
 </script>
